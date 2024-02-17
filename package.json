@@ -1,0 +1,21 @@
+{
+  "name": "cucumber-playwright",
+  "version": "1.0.0",
+  "description": "Cucumber Playwright Automation Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm playwright test"
+  },
+  "keywords": [
+    "cucumber",
+    "playwright",
+    "javascript"
+  ],
+  "author": "Rahul R",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.17",
+    "allure-playwright": "^2.12.0"
+  }
+}
