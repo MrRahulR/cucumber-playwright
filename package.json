@@ -14,6 +14,7 @@
   "author": "Rahul R",
   "license": "ISC",
   "dependencies": {
+    "@cucumber/cucumber": "^8.9.1",
     "@playwright/test": "^1.41.2",
     "@types/node": "^20.11.17",
     "allure-playwright": "^2.12.0"
