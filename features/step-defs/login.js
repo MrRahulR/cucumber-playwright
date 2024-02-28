@@ -1,5 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { Index } = require('../page-objects/Index');
+const { Index } = require('../../page-objects/Index');
 const playwright = require('@playwright/test');
 
 Given('user opens the website', async () => {
