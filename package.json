@@ -1,22 +1,110 @@
 {
   "name": "cucumber-playwright",
   "version": "1.0.0",
-  "description": "Cucumber Playwright Automation Framework",
+  "description": "Cucumber Playwright Automation Framework - BDD testing framework with Playwright and Cucumber integration for web and hybrid app testing",
   "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
-    "test": "npm playwright test"
+    "test": "cucumber-js",
+    "test:playwright": "playwright test",
+    "test:cucumber": "cucumber-js --publish-quiet",
+    "test:headed": "cucumber-js --publish-quiet --parallel 1",
+    "test:chrome": "BROWSER=chrome cucumber-js",
+    "test:firefox": "BROWSER=firefox cucumber-js",
+    "test:safari": "BROWSER=webkit cucumber-js",
+    "test:mobile": "DEVICE=mobile cucumber-js",
+    "test:tagged": "cucumber-js --tags",
+    "test:parallel": "cucumber-js --parallel 2",
+    "test:hybrid": "node page-objects/test.js",
+    "test:dry-run": "cucumber-js --dry-run",
+    "test:debug": "PWDEBUG=1 cucumber-js --parallel 1",
+    "report:allure": "allure generate allure-results --clean && allure open",
+    "report:html": "playwright show-report",
+    "clean": "rm -rf allure-results allure-report test-results playwright-report",
+    "clean:all": "npm run clean && rm -rf node_modules package-lock.json",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md}\"",
+    "lint": "eslint \"**/*.js\" --fix",
+    "lint:check": "eslint \"**/*.js\"",
+    "pretest": "npm run clean",
+    "posttest": "npm run report:allure",
+    "install:browsers": "playwright install",
+    "install:deps": "playwright install-deps",
+    "update:snapshots": "playwright test --update-snapshots",
+    "ci": "npm run lint:check && npm run test:cucumber",
+    "start": "npm run test:cucumber"
   },
   "keywords": [
     "cucumber",
     "playwright",
-    "javascript"
+    "javascript",
+    "bdd",
+    "automation",
+    "testing",
+    "e2e",
+    "end-to-end",
+    "test-automation",
+    "hybrid-app",
+    "mobile-testing",
+    "web-testing",
+    "appium",
+    "webview"
   ],
-  "author": "Rahul R",
+  "author": {
+    "name": "Rahul R",
+    "email": "rahul@example.com",
+    "url": "https://github.com/MrRahulR"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrRahulR/cucumber-playwright.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrRahulR/cucumber-playwright/issues"
+  },
+  "homepage": "https://github.com/MrRahulR/cucumber-playwright#readme",
   "license": "ISC",
   "dependencies": {
-    "@cucumber/cucumber": "^8.9.1",
+    "@cucumber/cucumber": "^10.3.1",
     "@playwright/test": "^1.41.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
     "@types/node": "^20.11.17",
-    "allure-playwright": "^2.12.0"
-  }
+    "allure-commandline": "^2.27.0",
+    "allure-playwright": "^2.15.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-playwright": "^1.5.1",
+    "prettier": "^3.2.5",
+    "wd": "^1.14.0"
+  },
+  "optionalDependencies": {
+    "appium": "^2.5.1",
+    "appium-uiautomator2-driver": "^3.0.4"
+  },
+  "config": {
+    "cucumberOpts": {
+      "require": [
+        "features/step-defs/**/*.js"
+      ],
+      "format": [
+        "progress",
+        "json:test-results/cucumber-report.json",
+        "html:test-results/cucumber-report.html"
+      ],
+      "formatOptions": {
+        "snippetInterface": "async-await"
+      }
+    }
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ]
 }
